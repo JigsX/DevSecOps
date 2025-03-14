@@ -55,7 +55,7 @@ pipeline{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t bingo ."
                        sh "docker tag bingo aseemakram19/bingo:latest "
-                       sh "docker push aseemakram19/bingo:latest "
+                       sh "docker push jigs751/bingo:latest "
                     }
                 }
             }
