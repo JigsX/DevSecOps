@@ -54,7 +54,7 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t bingo ."
-                       sh "docker tag bingo aseemakram19/bingo:latest "
+                       sh "docker tag bingo jigs751/bingo:latest "
                        sh "docker push jigs751/bingo:latest "
                     }
                 }
@@ -62,12 +62,12 @@ pipeline{
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image aseemakram19/bingo:latest > trivyimage.txt" 
+                sh "trivy image jigs751/bingo:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name bingo -p 3000:3000 aseemakram19/bingo:latest'
+                sh 'docker run -d --name bingo -p 3000:3000 jigs751/bingo:latest'
             }
         }
 
